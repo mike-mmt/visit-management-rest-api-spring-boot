@@ -1,6 +1,7 @@
 package com.mbunda.visitmanagement.controller;
 
 import com.mbunda.visitmanagement.domain.Visit;
+import com.mbunda.visitmanagement.dto.VisitDto;
 import com.mbunda.visitmanagement.service.VisitService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,19 +19,19 @@ public class VisitController {
     }
 
     @PostMapping
-    public ResponseEntity<Visit> createVisit(@RequestBody Visit visit) {
-        Visit savedVisit = visitService.saveVisit(visit);
+    public ResponseEntity<VisitDto> createVisit(@RequestBody Visit visit) {
+        VisitDto savedVisit = visitService.saveVisit(visit);
         return new ResponseEntity<>(savedVisit, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Visit>> getAllVisits() {
-        List<Visit> visits = visitService.getAllVisits();
+    public ResponseEntity<List<VisitDto>> getAllVisits() {
+        List<VisitDto> visits = visitService.getAllVisits();
         return ResponseEntity.ok(visits);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Visit> getVisitById(@PathVariable Long id) {
+    public ResponseEntity<VisitDto> getVisitById(@PathVariable Long id) {
         return visitService.getVisitById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

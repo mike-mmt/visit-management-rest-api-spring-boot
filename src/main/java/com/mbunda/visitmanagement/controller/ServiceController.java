@@ -2,6 +2,7 @@ package com.mbunda.visitmanagement.controller;
 
 import com.mbunda.visitmanagement.domain.Employee;
 import com.mbunda.visitmanagement.domain.Service;
+import com.mbunda.visitmanagement.dto.ServiceDto;
 import com.mbunda.visitmanagement.service.ServiceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,19 +20,19 @@ public class ServiceController {
     }
 
     @PostMapping
-    public ResponseEntity<Service> createService(@RequestBody Service service) {
-        Service savedService = serviceService.saveService(service);
+    public ResponseEntity<ServiceDto> createService(@RequestBody Service service) {
+        ServiceDto savedService = serviceService.saveService(service);
         return new ResponseEntity<>(savedService, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Service>> getAllServices() {
-        List<Service> services = serviceService.getAllServices();
+    public ResponseEntity<List<ServiceDto>> getAllServices() {
+        List<ServiceDto> services = serviceService.getAllServices();
         return ResponseEntity.ok(services);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Service> getServiceById(@PathVariable Long id) {
+    public ResponseEntity<ServiceDto> getServiceById(@PathVariable Long id) {
         return serviceService.getServiceById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -44,20 +45,20 @@ public class ServiceController {
     }
 
     @PatchMapping("/{id}/addExistingEmployee/{employeeId}")
-    public ResponseEntity<Service> addExistingEmployeeToService(@PathVariable Long id, @PathVariable Long employeeId) {
-        Service service = serviceService.addEmployeeToService(id, employeeId);
+    public ResponseEntity<ServiceDto> addExistingEmployeeToService(@PathVariable Long id, @PathVariable Long employeeId) {
+        ServiceDto service = serviceService.addEmployeeToService(id, employeeId);
         return ResponseEntity.ok(service);
     }
 
     @PatchMapping("/{id}/removeEmployee/{employeeId}")
-    public ResponseEntity<Service> removeEmployeeFromService(@PathVariable Long id, @PathVariable Long employeeId) {
-        Service service = serviceService.removeEmployeeFromService(id, employeeId);
+    public ResponseEntity<ServiceDto> removeEmployeeFromService(@PathVariable Long id, @PathVariable Long employeeId) {
+        ServiceDto service = serviceService.removeEmployeeFromService(id, employeeId);
         return ResponseEntity.ok(service);
     }
 
     @PostMapping("/{id}/addNewEmployee")
-    public ResponseEntity<Service> addNewEmployeeToService(@PathVariable Long id, @RequestBody Employee employee) {
-        Service service = serviceService.addNewEmployeeToService(id, employee);
+    public ResponseEntity<ServiceDto> addNewEmployeeToService(@PathVariable Long id, @RequestBody Employee employee) {
+        ServiceDto service = serviceService.addNewEmployeeToService(id, employee);
         return ResponseEntity.ok(service);
     }
 }

@@ -1,6 +1,7 @@
 package com.mbunda.visitmanagement.controller;
 
 import com.mbunda.visitmanagement.domain.Employee;
+import com.mbunda.visitmanagement.dto.EmployeeDto;
 import com.mbunda.visitmanagement.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,19 +19,19 @@ public class EmployeeController {
         }
 
         @PostMapping
-        public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
-            Employee savedEmployee = employeeService.saveEmployee(employee);
+        public ResponseEntity<EmployeeDto> createEmployee(@RequestBody Employee employee) {
+            EmployeeDto savedEmployee = employeeService.saveEmployee(employee);
             return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
         }
 
         @GetMapping
-        public ResponseEntity<List<Employee>> getAllEmployees() {
-            List<Employee> employees = employeeService.getAllEmployees();
+        public ResponseEntity<List<EmployeeDto>> getAllEmployees() {
+            List<EmployeeDto> employees = employeeService.getAllEmployees();
             return ResponseEntity.ok(employees);
         }
 
         @GetMapping("/{id}")
-        public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
+        public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
             return employeeService.getEmployeeById(id)
                     .map(ResponseEntity::ok)
                     .orElse(ResponseEntity.notFound().build());

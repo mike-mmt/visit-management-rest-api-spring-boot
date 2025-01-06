@@ -4,7 +4,6 @@ import com.mbunda.visitmanagement.domain.Employee;
 import com.mbunda.visitmanagement.domain.Service;
 import com.mbunda.visitmanagement.repository.EmployeeRepository;
 import com.mbunda.visitmanagement.repository.ServiceRepository;
-import com.mbunda.visitmanagement.repository.VisitRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +20,7 @@ public class databaseInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        serviceRepository.save(new Service(null, "Cięcie włosów długich", 120.0, null));
-        employeeRepository.save(new Employee(null, "Alice", "Hairdresser", null, null));
+        serviceRepository.save(new Service((Long) null, "Cięcie włosów długich", 120.0, null));
+        employeeRepository.save(new Employee((Long) null, "Alice", "Hairdresser", null, null));
     }
 }

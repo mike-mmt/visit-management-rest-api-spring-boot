@@ -1,6 +1,7 @@
 package com.mbunda.visitmanagement.controller;
 
 import com.mbunda.visitmanagement.domain.Client;
+import com.mbunda.visitmanagement.dto.ClientDto;
 import com.mbunda.visitmanagement.service.ClientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,19 +19,19 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<Client> createClient(@RequestBody Client client) {
-        Client savedClient = clientService.saveClient(client);
+    public ResponseEntity<ClientDto> createClient(@RequestBody Client client) {
+        ClientDto savedClient = clientService.saveClient(client);
         return new ResponseEntity<>(savedClient, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Client>> getAllClients() {
-        List<Client> clients = clientService.getAllClients();
+    public ResponseEntity<List<ClientDto>> getAllClients() {
+        List<ClientDto> clients = clientService.getAllClients();
         return ResponseEntity.ok(clients);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Client> getClientById(@PathVariable Long id) {
+    public ResponseEntity<ClientDto> getClientById(@PathVariable Long id) {
         return clientService.getClientById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

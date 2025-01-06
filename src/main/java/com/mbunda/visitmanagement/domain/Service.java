@@ -23,7 +23,7 @@ public class Service {
     private String name;
     private Double price;
 
-    @ManyToMany(mappedBy = "services", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "services", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JsonManagedReference
     private List<Employee> employees = new ArrayList<>();
 }

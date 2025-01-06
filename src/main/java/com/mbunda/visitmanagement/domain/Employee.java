@@ -10,7 +10,6 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "employee")
@@ -25,7 +24,7 @@ public class Employee {
     @ToString.Exclude
     private List<Visit> visits = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JsonBackReference
     @JoinTable(
             name = "employee_service",
