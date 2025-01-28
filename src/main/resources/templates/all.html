@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All cosmetics</title>
+</head>
+<body>
+<h3>Visits</h3>
+<div th:each="visit : ${allVisits}">
+  <div th:text="${visit.date}"></div>
+  <div th:text="Employee ${visit.employee}"></div>
+  <div th:text="Service ${visit.service.name}"></div>
+  <div th:text="Client ${visit.client.name()}"></div>
+  <a th:href="@{/visits/edit/{id}(id=${visit.id})}">Edit</a>
+  <a th:href="@{/visits/delete/{id}(id=${visit.id})}">Delete</a>
+</div>
+<h3>Employees</h3>
+<div th:each="employee : ${allEmployees}">
+  <div th:text="${employee.name}"></div>
+  <div th:text="${employee.specialization}"></div>
+  <a th:href="@{/employees/edit/{id}(id=${employee.id})}">Edit</a>
+  <a th:href="@{/employees/delete/{id}(id=${employee.id})}">Delete</a>
+</div>
+<h3>Clients</h3>
+<div th:each="client : ${allClients}">
+  <div th:text="${client.name}"></div>
+  <div th:text="${client.email}"></div>
+  <a th:href="@{/clients/edit/{id}(id=${client.id})}">Edit</a>
+  <a th:href="@{/clients/delete/{id}(id=${client.id})}">Delete</a>
+</div>
+<h3>Services</h3>
+<div th:each="service : ${allServices}">
+  <div th:text="${service.name}"></div>
+  <div th:text="${service.price}"></div>
+  <a th:href="@{/services/edit/{id}(id=${service.id})}">Edit</a>
+  <a th:href="@{/services/delete/{id}(id=${service.id})}">Delete</a>
+</div>
+</body>
+</html>

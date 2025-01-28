@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Cosmetic</title>
+</head>
+<body>
+<h1>Add New Cosmetic</h1>
+<form th:action="@{/cosmetics/add}" th:object="${cosmetic}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required/>
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    </div>
+
+    <div>
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" th:field="*{brand}" required/>
+        <div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}">Brand Error</div>
+    </div>
+
+    <div>
+        <label for="volumeMl">Volume (ml):</label>
+        <input type="number" id="volumeMl" th:field="*{volumeMl}" required/>
+        <div th:if="${#fields.hasErrors('volumeMl')}" th:errors="*{volumeMl}">Volume Error</div>
+    </div>
+
+    <div>
+        <label for="productionYear">Production Year:</label>
+        <input type="number" id="productionYear" th:field="*{productionYear}" required
+               min="1900" max="2099"/>
+        <div th:if="${#fields.hasErrors('productionYear')}" th:errors="*{productionYear}">Year Error</div>
+    </div>
+
+    <div>
+        <label for="discontinued">Discontinued:</label>
+        <input type="checkbox" id="discontinued" th:field="*{discontinued}"/>
+        <div th:if="${#fields.hasErrors('discontinued')}" th:errors="*{discontinued}">Discontinued Error</div>
+    </div>
+
+    <button type="submit">Add Cosmetic</button>
+    <div th:if="${#fields.hasAnyErrors()}">
+        <ul>
+            <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+        </ul>
+    </div>
+</form>
+</body>
+</html>
