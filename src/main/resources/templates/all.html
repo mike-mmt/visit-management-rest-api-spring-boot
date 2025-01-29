@@ -2,35 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>All cosmetics</title>
+  <title>All</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<h3>Visits</h3>
-<div th:each="visit : ${allVisits}">
-  <div th:text="${visit.date}"></div>
-  <a th:href="@{/visits/edit/{id}(id=${visit.id})}">Edit</a>
-  <a th:href="@{/visits/delete/{id}(id=${visit.id})}">Delete</a>
+<body class="container mt-4">
+<h3 class="mb-3">Visits</h3>
+<ul class="list-group mb-4" th:each="visit : ${allVisits}">
+  <li class="list-group-item">
+    <span th:text="${visit.id}"></span>
+    <span th:text="${visit.date}"></span>
+  </li>
+</ul>
+<h3 class="mb-3">Employees</h3>
+<div class="mb-4" th:each="employee : ${allEmployees}">
+  <div class="fw-bold" th:text="${employee.name}"></div>
+  <div class="text-muted" th:text="${employee.specialization}"></div>
 </div>
-<h3>Employees</h3>
-<div th:each="employee : ${allEmployees}">
-  <div th:text="${employee.name}"></div>
-  <div th:text="${employee.specialization}"></div>
-  <a th:href="@{/employees/edit/{id}(id=${employee.id})}">Edit</a>
-  <a th:href="@{/employees/delete/{id}(id=${employee.id})}">Delete</a>
+<h3 class="mb-3">Clients</h3>
+<div class="mb-4" th:each="client : ${allClients}">
+  <div class="fw-bold" th:text="${client.name}"></div>
+  <div class="text-muted" th:text="${client.email}"></div>
+  <a class="btn btn-danger btn-sm mt-1" th:href="@{/clients/delete/{id}(id=${client.id})}">Delete</a>
 </div>
-<h3>Clients</h3>
-<div th:each="client : ${allClients}">
-  <div th:text="${client.name}"></div>
-  <div th:text="${client.email}"></div>
-  <a th:href="@{/clients/edit/{id}(id=${client.id})}">Edit</a>
-  <a th:href="@{/clients/delete/{id}(id=${client.id})}">Delete</a>
+<h3 class="mb-3">Services</h3>
+<div class="mb-4" th:each="service : ${allServices}">
+  <div class="fw-bold" th:text="${service.name}"></div>
+  <div class="text-muted" th:text="${service.price}"></div>
 </div>
-<h3>Services</h3>
-<div th:each="service : ${allServices}">
-  <div th:text="${service.name}"></div>
-  <div th:text="${service.price}"></div>
-  <a th:href="@{/services/edit/{id}(id=${service.id})}">Edit</a>
-  <a th:href="@{/services/delete/{id}(id=${service.id})}">Delete</a>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

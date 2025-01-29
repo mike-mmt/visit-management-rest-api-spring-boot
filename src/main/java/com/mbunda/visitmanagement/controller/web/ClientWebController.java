@@ -21,8 +21,8 @@ public class ClientWebController {
         return "clients";
     }
 
-    @GetMapping("/delete/:id")
-    public String deleteClient(@RequestParam("id") Long id, Model model) {
+    @GetMapping("/delete/{id}")
+    public String deleteClient(@PathVariable("id") Long id, Model model) {
         clientService.deleteClient(id);
         return "redirect:/clients";
     }
