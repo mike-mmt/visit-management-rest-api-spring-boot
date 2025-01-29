@@ -6,7 +6,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ~/apps/ap-postgres-lab06:/var/lib/postgresql/data
+      - ~/apps/ap-postgres-projekt:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=projektap
       - POSTGRES_USER=projektap

@@ -7,7 +7,9 @@ import com.mbunda.visitmanagement.domain.Visit;
 import com.mbunda.visitmanagement.dto.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class EntityMapper {
@@ -16,10 +18,14 @@ public class EntityMapper {
     }
 
     public EmployeeDto mapToEmployeeDto(Employee employee) {
-        List<VisitInfo> visits = employee.getVisits().stream()
+        List<VisitInfo> visits = Optional.ofNullable(employee.getVisits())
+                .orElseGet(Collections::emptyList) // Use an empty list if visits is null
+                .stream()
                 .map(this::mapToVisitInfo)
                 .toList();
-        List<ServiceInfo> services = employee.getServices().stream()
+        List<ServiceInfo> services = Optional.ofNullable(employee.getServices())
+                .orElseGet(Collections::emptyList) // Use an empty list if services is null
+                .stream()
                 .map(this::mapToServiceInfo)
                 .toList();
         return new EmployeeDto(employee.getId(), employee.getName(), employee.getSpecialization(), visits, services);
@@ -30,7 +36,9 @@ public class EntityMapper {
     }
 
     public ServiceDto mapToServiceDto(Service service) {
-        List<EmployeeInfo> employees = service.getEmployees().stream()
+        List<EmployeeInfo> employees = Optional.ofNullable(service.getEmployees())
+                .orElseGet(Collections::emptyList) // Use an empty list if employees is null
+                .stream()
                 .map(this::mapToEmployeeInfo)
                 .toList();
         return new ServiceDto(service.getId(), service.getName(), service.getPrice(), employees);
@@ -41,7 +49,11 @@ public class EntityMapper {
     }
 
     public ClientDto mapToClientDto(Client client) {
-        List<VisitInfo> visits = client.getVisits().stream().map(this::mapToVisitInfo).toList();
+        List<VisitInfo> visits = Optional.ofNullable(client.getVisits())
+                .orElseGet(Collections::emptyList) // Use an empty list if visits is null
+                .stream()
+                .map(this::mapToVisitInfo)
+                .toList();
         return new ClientDto(client.getId(), client.getName(), client.getEmail(), client.getPhoneNumber(), visits);
     }
 
@@ -50,9 +62,15 @@ public class EntityMapper {
     }
 
     public VisitDto mapToVisitDto(Visit visit) {
-        EmployeeInfo employee = this.mapToEmployeeInfo(visit.getEmployee());
-        ServiceInfo service = this.mapToServiceInfo(visit.getService());
-        ClientInfo client = this.mapToClientInfo(visit.getClient());
+        EmployeeInfo employee = Optional.ofNullable(visit.getEmployee())
+                .map(this::mapToEmployeeInfo)
+                .orElse(null); // Use null if employee is null
+        ServiceInfo service = Optional.ofNullable(visit.getService())
+                .map(this::mapToServiceInfo)
+                .orElse(null); // Use null if service is null
+        ClientInfo client = Optional.ofNullable(visit.getClient())
+                .map(this::mapToClientInfo)
+                .orElse(null); // Use null if client is null
         return new VisitDto(visit.getId(), visit.getDate(), employee, service, client);
     }
 }

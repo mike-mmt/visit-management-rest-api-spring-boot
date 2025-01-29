@@ -1,6 +1,5 @@
 package com.mbunda.visitmanagement.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +23,5 @@ public class Service {
     private Double price;
 
     @ManyToMany(mappedBy = "services", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JsonManagedReference
     private List<Employee> employees = new ArrayList<>();
 }

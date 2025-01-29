@@ -2,11 +2,14 @@ package com.mbunda.visitmanagement.controller;
 
 import com.mbunda.visitmanagement.domain.Visit;
 import com.mbunda.visitmanagement.dto.VisitDto;
+import com.mbunda.visitmanagement.dto.VisitSearchCriteria;
 import com.mbunda.visitmanagement.service.VisitService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -41,5 +44,25 @@ public class VisitController {
     public ResponseEntity<Void> deleteVisit(@PathVariable Long id) {
         visitService.deleteVisit(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/time")
+    public ResponseEntity<List<VisitDto>> getVisitsByTime(@RequestParam LocalDateTime from, @RequestParam LocalDateTime to) {
+        return ResponseEntity.ok(visitService.getVisitsFromDatetimeToDatetime(from, to));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<VisitDto>> searchVisits(VisitSearchCriteria criteria) {
+        return ResponseEntity.ok(visitService.searchVisits(criteria));
+    }
+
+    @GetMapping("/count-by-employee")
+    public ResponseEntity<List<Object[]>> getVisitCountByEmployee() {
+        return ResponseEntity.ok(visitService.getVisitCountByEmployee());
+    }
+
+    @GetMapping("/with-employee-name")
+    public ResponseEntity<List<Object[]>> getAllVisitsWithEmployeeName() {
+        return ResponseEntity.ok(visitService.getAllVisitsWithEmployeeName());
     }
 }

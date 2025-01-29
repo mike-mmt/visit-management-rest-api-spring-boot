@@ -1,6 +1,5 @@
 package com.mbunda.visitmanagement.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,7 +24,6 @@ public class Employee {
     private List<Visit> visits = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JsonBackReference
     @JoinTable(
             name = "employee_service",
             joinColumns = @JoinColumn(name = "employee_id"),
