@@ -25,7 +25,7 @@ public class WebController {
         this.serviceService = serviceService;
     }
 
-    @GetMapping("/")
+    @GetMapping({"", "/"})
     public String all(Model model) {
         model.addAttribute("allVisits", visitService.getAllVisits());
         model.addAttribute("allEmployees", employeeService.getAllEmployees());

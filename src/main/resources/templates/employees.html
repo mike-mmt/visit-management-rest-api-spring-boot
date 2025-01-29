@@ -10,8 +10,12 @@
     <div th:text="${employee.id}"></div>
     <div th:text="${employee.name}"></div>
     <div th:text="${employee.specialization}"></div>
-    <div th:text="${employee.services()}"></div>
-    <div th:text="${employee.visits()}"></div>
+    <div>
+        Services:
+        <div th:each="svc : ${employee.services}">
+            <div th:text="${svc.name()}"></div>
+        </div>
+    </div>
     <a th:href="@{/employees/edit/{id}(id=${employee.id})}">Edit</a>
     <a th:href="@{/employees/delete/{id}(id=${employee.id})}">Delete</a>
 </div>
