@@ -1,0 +1,534 @@
+{
+  "info": {
+    "_postman_id": "1ac1e211-83e8-4b55-b1b4-9f4ffb8f8759",
+    "name": "Visit Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "39509291"
+  },
+  "item": [
+    {
+      "name": "Client",
+      "item": [
+        {
+          "name": "Create Client",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"1234567890\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/clients",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Clients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/clients",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Client by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/clients/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clients",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Client",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/clients/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clients",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Employee",
+      "item": [
+        {
+          "name": "Create Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Smith\",\n  \"email\": \"jane.smith@example.com\",\n  \"phone\": \"0987654321\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/employees",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Employees",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Employee by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Service",
+      "item": [
+        {
+          "name": "Create Service",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Haircut\",\n  \"description\": \"Basic haircut service\",\n  \"price\": 20.0\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/services",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/services",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Service by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/services/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "services",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Existing Employee to Service",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/services/1/addExistingEmployee/2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "services",
+                "1",
+                "addExistingEmployee",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Employee from Service",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/services/1/removeEmployee/2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "services",
+                "1",
+                "removeEmployee",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add New Employee to Service",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Employee\",\n  \"email\": \"new.employee@example.com\",\n  \"phone\": \"1122334455\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/services/1/addNewEmployee",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "services",
+                "1",
+                "addNewEmployee"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Visit",
+      "item": [
+        {
+          "name": "Create Visit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": 1,\n  \"serviceId\": 1,\n  \"employeeId\": 1,\n  \"datetime\": \"2023-10-01T10:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/visits",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "visits"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Visits",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/visits",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "visits"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Visit by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/visits/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "visits",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Visit",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/visits/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "visits",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Visits by Time Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/visits/time?from=2023-10-01T00:00:00&to=2023-10-31T23:59:59",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "visits",
+                "time"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2023-10-01T00:00:00"
+                },
+                {
+                  "key": "to",
+                  "value": "2023-10-31T23:59:59"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Visits",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/visits/search?employeeId=1&serviceId=1&clientId=1&page=0&size=10&sortBy=date&sortDirection=asc",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "visits",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "dateFrom",
+                  "value": "2023-10-01T00:00:00"
+                },
+                {
+                  "key": "dateTo",
+                  "value": "2023-10-31T23:59:59"
+                },
+                {
+                  "key": "employeeId",
+                  "value": "1"
+                },
+                {
+                  "key": "serviceId",
+                  "value": "1"
+                },
+                {
+                  "key": "clientId",
+                  "value": "1"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "date"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "asc"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Other",
+      "item": [
+        {
+          "name": "Get Visit Count by Employee",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/visits/count-by-employee",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "visits",
+                "count-by-employee"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Visits with Employee Name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/visits/with-employee-name",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "visits",
+                "with-employee-name"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080"
+    }
+  ]
+}
